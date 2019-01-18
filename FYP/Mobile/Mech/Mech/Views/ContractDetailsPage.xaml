@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:img="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+			 xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             x:Class="Mech.Views.ContractDetailsPage" Title="Details">
+	<ContentPage.Content>
+		<Frame BackgroundColor="WhiteSmoke"
+							Padding="10"
+							HasShadow="false"
+							Margin="5">
+			<StackLayout Orientation="Vertical" Spacing="10" Margin="2,2,2,2">
+				<Grid HorizontalOptions="Center" VerticalOptions="Center">
+					<img:CircleImage Source="{Binding Item.ImageUrl}" WidthRequest="50" HeightRequest="50" Aspect="AspectFill" 
+									 HorizontalOptions="Center" VerticalOptions="Center"/>
+				</Grid>
+
+				<Grid HorizontalOptions="Center" VerticalOptions="Center">
+					<Label Text="{Binding Item.Name}" FontSize="18" TextColor="Gray"  HorizontalOptions="Center" VerticalOptions="Center" />
+				</Grid>
+
+				<Grid HorizontalOptions="Center" VerticalOptions="Center">
+					<Label Text="{Binding Item.Title}" FontSize="14" TextColor="DarkGray" HorizontalOptions="Center" VerticalOptions="Center"/>
+				</Grid>
+					
+					<BoxView HeightRequest="1" HorizontalOptions="Fill" Color="OrangeRed" Margin="2" />
+
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Initial Charges" FontSize="12" TextColor="Gray" WidthRequest="120"/>
+					<Label Text="{Binding Item.InitialCharges}" FontSize="16" TextColor="Gray" FontAttributes="Bold"/>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Rate Per Hour" FontSize="12" TextColor="Gray" WidthRequest="120"/>
+					<Label Text="{Binding Item.RatePerHour}" FontSize="16" TextColor="Gray" FontAttributes="Bold"/>  
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Rate Per KM " FontSize="12" TextColor="Gray" WidthRequest="120"/>
+					<Label Text="{Binding Item.RatePerKM}" FontSize="16" TextColor="Gray" FontAttributes="Bold"/>
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Distance in KM" FontSize="12" TextColor="Gray" WidthRequest="120"/>
+					<Label Text="{Binding Item.KM}" FontSize="16" TextColor="Gray" FontAttributes="Bold"/>
+				</StackLayout>
+				<BoxView HeightRequest="1" HorizontalOptions="Fill" Color="OrangeRed" Margin="2" />
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Total" FontSize="12" TextColor="Gray" WidthRequest="100" />
+					<Label Text="{Binding Item.Total}" FontSize="13" TextColor="DarkGray" FontAttributes="Bold" />
+				</StackLayout>
+				<StackLayout Orientation="Horizontal">
+					<Label Text="Date" FontSize="12" TextColor="Gray" WidthRequest="100"/>
+					<Label Text="{Binding Item.Time,StringFormat='{0:MMMM dd, yyyy}'}" FontSize="13" TextColor="DarkGray" FontAttributes="Bold"/>
+				</StackLayout>	   
+				
+				<BoxView HeightRequest="1" HorizontalOptions="Fill" Color="OrangeRed" Margin="2" />	   
+				<Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Column="0" Text="{Binding StatusText}" FontSize="12" TextColor="Red" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+
+					<lottie:AnimationView Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill"
+											  Animation="gears.json" Loop="True" AutoPlay="True"
+											HeightRequest="75" WidthRequest="75"  	IsVisible="{Binding CanFinish}"  />
+
+
+					<StackLayout Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Orientation="Horizontal">
+						
+						<Button  Text="Start"  VerticalOptions="Center" HorizontalOptions="Center"  Style="{DynamicResource PrimaryButton}"  Command="{Binding StartCommand}" IsVisible="{Binding CanStart}"      />
+						<Button  Text="Finish" VerticalOptions="Center" HorizontalOptions="Center"   Style="{DynamicResource PrimaryButtonRed}"  Command="{Binding FinishCommand}" IsVisible="{Binding CanFinish}"      />
+						</StackLayout>
+					
+				</Grid>
+				<!--<Label Text="{Binding AmountText}" FontSize="16" TextColor="SeaGreen" IsVisible="{Binding Item.IsConfirmed}" FontAttributes="Bold"/>-->
+				<lottie:AnimationView Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Fill"
+											  Animation="CheckMark.json" Loop="False" AutoPlay="True"
+											HeightRequest="75" WidthRequest="75"  	IsVisible="{Binding Item.IsConfirmed}"  />
+
+				<Button  Text="{Binding ButtonText}" Command="{Binding PayCommand}" WidthRequest="150"  HorizontalOptions="Center"	 VerticalOptions="Center"  Style="{DynamicResource PrimaryButton}" 
+						  Margin="2"  IsVisible="{Binding CanPayIsVisible}" />
+				<Grid HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding Pending}">
+
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid   Grid.Column="0" >
+
+						<Button  Command="{Binding CallCommand}"  HorizontalOptions="Center" VerticalOptions="Center"  Style="{DynamicResource TransparantButton}" WidthRequest="100" HeightRequest="100" Font="11"  
+					     Image="call64.png" 
+					 >
+						</Button>
+					</Grid>
+
+					<Grid Grid.Column="1" >
+						<Button Command="{Binding SmsCommand}" HorizontalOptions="Center" VerticalOptions="Center"
+							Style="{DynamicResource TransparantButton}" WidthRequest="100" HeightRequest="100" Font="11"   
+					   Image="sms64.png" 
+					 >
+						</Button>
+
+
+					</Grid>
+				</Grid>
+				
+
+
+			</StackLayout>
+
+		</Frame>
+	</ContentPage.Content>
+</ContentPage>

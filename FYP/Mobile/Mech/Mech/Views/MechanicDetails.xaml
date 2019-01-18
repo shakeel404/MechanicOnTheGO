@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mech.Views.MechanicDetails"
+			 
+			Title="{Binding Name}" >
+    <ContentPage.Content>
+
+		<Grid >
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<StackLayout Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start" Margin="10">
+				<Label Text="{Binding Name}" FontSize="16"  HorizontalTextAlignment="Start" 
+				   TextColor="Gray" HorizontalOptions="Start" />
+				<Label Text="{Binding Title}" FontSize="12" 
+				   HorizontalTextAlignment="Start" HorizontalOptions="Start"  TextColor="Gray"/>
+				<Label Text="{Binding ContactNo}" FontSize="10"  HorizontalTextAlignment="Start" 
+				   TextColor="Gray" HorizontalOptions="Start" />
+				<Label Text="{Binding Address}" FontSize="10" 
+				   HorizontalTextAlignment="Start" HorizontalOptions="Start"  TextColor="Gray"/>
+				<Grid x:Name="ButtonsGrid" Grid.Row="1">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Button Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Start" 
+							Style="{DynamicResource PrimaryButton}" Text="Call"  Margin="0,2,0,0"  Clicked="OnCallClicked" />
+					<Button Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Start" 
+							Style="{DynamicResource PrimaryButton}" Text="SMS"  Margin="0,2,0,0" Clicked="OnSMSClicked" />
+
+				</Grid>
+			</StackLayout>
+
+			<Grid Grid.Row="1" x:Name="MapGrid">
+				
+			</Grid>
+		</Grid>
+		
+		
+    </ContentPage.Content>
+</ContentPage>

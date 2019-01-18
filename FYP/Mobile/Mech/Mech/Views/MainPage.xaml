@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"   
+             x:Class="Mech.Views.MainPage"
+			Title="Home">
+
+
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="RefreshToolBar" Text="Refresh"  Order="Default"  Icon="refresh.png"  Clicked="RefreshMap" Priority="0"/>
+		<ToolbarItem x:Name="ViewToolBar" Icon="mark.png" Text="View"  Order="Default" Clicked="OnToolBarItemClicked" Priority="1"/>
+		 
+		<!--<ToolbarItem Text="Clear Data" Order="Secondary" Clicked="OnClearClicked"/>-->
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+
+		<AbsoluteLayout x:Name="ViewLayout">
+
+
+			<Grid x:Name="MapGrid"   AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" >
+			    
+			</Grid>
+
+			<Label x:Name="AddressesText" Text="" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" 
+				   AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Margin="5,5,10,0"/>															
+			
+			<Grid  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="All"
+					  AbsoluteLayout.LayoutBounds="0,1,0.2,0.2">  
+				<Button  x:Name="LogoutButton" Text="Logout"     Style="{DynamicResource CircleRedButton}"   Clicked="OnLogOutClicked"   />
+				<Button x:Name="LoginButton" Text="+"    Style="{DynamicResource CircleBlueButton}"    Clicked="OnLoginClicked"   />
+			</Grid>
+
+			 
+
+		</AbsoluteLayout>
+
+
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mech.Views.MechanicList"
+			 xmlns:vm="clr-namespace:Mech.ViewModels"
+			Title="Mechanics" >
+	<ContentPage.BindingContext>
+		<vm:MechanicListViewModel/>
+	</ContentPage.BindingContext>
+	
+    <ContentPage.Content>
+		<ScrollView> 
+			<ListView x:Name="MechanisList" ItemsSource="{Binding Mechanics}"  IsRefreshing="{Binding IsRefreshing}"
+					  IsPullToRefreshEnabled="True"  RefreshCommand="{Binding RefreshMechanicsCommand}"  
+					  HasUnevenRows="True"   ItemTapped="OnItemClicked" >
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Vertical" Margin="5,10">   
+								 
+									<Label Text="{Binding Name}" FontSize="16"  HorizontalTextAlignment="Start" 
+										   TextColor="Gray" HorizontalOptions="Start" />
+									
+									<Label Text="{Binding Title}" FontSize="12"  HorizontalTextAlignment="Start" 
+										   TextColor="Gray" HorizontalOptions="Start" />
+									
+									<Label Text="{Binding ContactNo}" FontSize="10"
+										   HorizontalTextAlignment="Start" HorizontalOptions="Start"  TextColor="Gray"/>
+									
+									<Label Text="{Binding Address}" FontSize="10"
+										   HorizontalTextAlignment="Start" HorizontalOptions="Start"  TextColor="Gray"/>
+								 
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			   
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

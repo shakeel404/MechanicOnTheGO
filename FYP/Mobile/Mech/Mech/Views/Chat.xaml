@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:Mech.Utils;assembly=Mech"
+			 xmlns:img="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Mech.Views.Chat">
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<DataTemplate x:Key="FromTemplate">
+				<ViewCell>
+					<Frame BackgroundColor="LightBlue"
+							Padding="10"
+							HasShadow="false"
+							Margin="10,10,40,10">
+						<StackLayout Orientation="Horizontal" Spacing="10" Margin="2,2,2,2">
+							<img:CircleImage Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+
+							<StackLayout>
+								<StackLayout Orientation="Horizontal">
+									<Label Text="{Binding FromUser}" FontSize="9" TextColor="Gray"/>
+									<Label Text="@" FontSize="9" TextColor="Gray"/>
+									<Label Text="{Binding DateSent}" FontSize="8" TextColor="DarkGray"/>
+								</StackLayout>
+								<Label Text="{Binding Message}" FontSize="10"   />
+							</StackLayout>
+
+						</StackLayout>
+
+					</Frame>
+				</ViewCell>
+
+			</DataTemplate>
+
+			<DataTemplate x:Key="ToTemplate">
+				<ViewCell>
+					<Frame BackgroundColor="DarkGray"
+							Padding="10"
+							HasShadow="false"
+							Margin="40,10,10,10">
+						<StackLayout Orientation="Horizontal" Spacing="10" Margin="2,2,2,2">
+							
+							<StackLayout>
+								<StackLayout Orientation="Horizontal">
+									<Label Text="{Binding FromUser}" FontSize="9" TextColor="LightBlue"/>
+									<Label Text="@" FontSize="9" TextColor="LightBlue"/>
+									<Label Text="{Binding DateSent}" FontSize="8" TextColor="LightBlue"/>
+								</StackLayout>										    
+								<Label Text="{Binding Message}" FontSize="10"   />
+							</StackLayout>
+							<img:CircleImage Source="{Binding SenderImageUrl}" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+
+						</StackLayout>
+					</Frame>
+				</ViewCell>
+			</DataTemplate>
+
+			<local:ChatDataTemplateSelector x:Key="ChatDataTemplateSelector" ToTemplate="{StaticResource ToTemplate}"	FromTemplate="{StaticResource FromTemplate}" />
+
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<ContentPage.Content>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+		
+		<ListView Grid.Row="0" x:Name="ChatListView" ItemsSource="{Binding Messages}"   HasUnevenRows="True" ItemTemplate="{StaticResource ChatDataTemplateSelector}" 
+				 SeparatorColor="Transparent"  />
+
+		<StackLayout Grid.Row="1" Orientation="Horizontal">
+			<Entry  Keyboard="Chat" Placeholder="message" HorizontalOptions="Start" Text="{Binding MessageText}" VerticalOptions="Center"  />
+			<Button Style="{DynamicResource CircleBlueButton}"	Command="{Binding SendCommand}"	   Text="Send"/>
+		</StackLayout>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

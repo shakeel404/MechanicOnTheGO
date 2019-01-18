@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="Mech.Views.TermsAndConditions"
+			 Title="Terms and Conditions">
+    <ContentPage.Content>
+		<ScrollView >
+			<StackLayout Orientation="Vertical"  Margin="5,2,2,5">
+				<Label FontSize="16" FontAttributes="Bold" Text="Services"/>
+				<Label Margin="1" Text="Terms and Conditions are a set of rules and guidelines 
+that a user must agree to in order to use your website or mobile app. It acts as a legal contract between you (the company) who has the website or mobile app and the user who access your website and mobile app.	 
+It's up to you to set the rules and guidelines that the user must agree to. You can think of your Terms and Conditions agreement as the legal agreement where you maintain your rights to exclude users from your app in the event that they abuse your app, and where you maintain your legal rights against potential app abusers, and so on.	 
+Terms and Conditions are also known as Terms of Service or Terms of Use.	  
+This type of legal agreement can be used for both your website and your mobile app. It's not required (it's not recommended actually) to have separate Terms and Conditions agreements: one for your website and one for your mobile app."
+                 />
+				<Label FontSize="16" FontAttributes="Bold" Text="User"/>
+				<Label Margin="1" Text="Terms and Conditions are a set of rules and guidelines 
+that a user must agree to in order to use your website or mobile app. It acts as a legal contract between you (the company) who has the website or mobile app and the user who access your website and mobile app.	 
+It's up to you to set the rules and guidelines that the user must agree to. You can think of your Terms and Conditions agreement as the legal agreement where you maintain your rights to exclude users from your app in the event that they abuse your app, and where you maintain your legal rights against potential app abusers, and so on.	 
+Terms and Conditions are also known as Terms of Service or Terms of Use.	  
+This type of legal agreement can be used for both your website and your mobile app. It's not required (it's not recommended actually) to have separate Terms and Conditions agreements: one for your website and one for your mobile app."
+                 />
+				<Label FontSize="16" FontAttributes="Bold" Text="App"/>
+				<Label Margin="1" Text="Terms and Conditions are a set of rules and guidelines 
+that a user must agree to in order to use your website or mobile app. It acts as a legal contract between you (the company) who has the website or mobile app and the user who access your website and mobile app.	 
+It's up to you to set the rules and guidelines that the user must agree to. You can think of your Terms and Conditions agreement as the legal agreement where you maintain your rights to exclude users from your app in the event that they abuse your app, and where you maintain your legal rights against potential app abusers, and so on.	 
+Terms and Conditions are also known as Terms of Service or Terms of Use.	  
+This type of legal agreement can be used for both your website and your mobile app. It's not required (it's not recommended actually) to have separate Terms and Conditions agreements: one for your website and one for your mobile app."
+                 />
+			<StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+				<controls:CheckBox x:Name="TCCheckBox"   Text="I Accept" HorizontalOptions="Start" VerticalOptions="Center" Type="Check"/>
+				<Button  BindingContext="{x:Reference Name=TCCheckBox}" IsVisible="{Binding Path=IsChecked}"   WidthRequest="100"  HorizontalOptions="Start" VerticalOptions="Center"  Style="{DynamicResource PrimaryButton}" Text="Next"  Margin="2,0,0,0" Clicked="OnNextButtonClicked" />
+
+			</StackLayout>
+		</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

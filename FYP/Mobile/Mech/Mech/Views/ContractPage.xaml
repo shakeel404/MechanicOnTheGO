@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mech.Views.ContractPage"
+			  xmlns:controls="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+			 
+			 Title="Ask For Work">
+	<ContentPage.Content>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+
+			<Grid Grid.Row="0"    	>
+				<Frame     HorizontalOptions="Start" VerticalOptions="Center"   CornerRadius="10"   x:Name="RequestFrame" IsVisible="False">
+					<Grid >
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+
+						<Grid  Grid.Column="0" x:Name="HelpGrid" IsVisible="False">
+							<Button  x:Name="HelpButton" HorizontalOptions="Center" VerticalOptions="Center"   Clicked="OnHelpClicked"   Style="{DynamicResource TransparantButton}" WidthRequest="100" HeightRequest="100" Font="11"   
+					  Image="help64.png" 
+					 >
+							</Button>
+						</Grid>
+						<Grid   Grid.Column="1" x:Name="CallGrid" IsVisible="False">
+
+							<Button   HorizontalOptions="Center" VerticalOptions="Center"  Style="{DynamicResource TransparantButton}" WidthRequest="100" HeightRequest="100" Font="11"  
+					    Clicked="OnCallClicked" Image="call64.png" 
+					 >
+							</Button>
+						</Grid>
+
+						<Grid Grid.Column="2" x:Name="SmsGrid" IsVisible="False">
+							<Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnSmsClicked"  Style="{DynamicResource TransparantButton}" WidthRequest="100" HeightRequest="100" Font="11"   
+					   Image="sms64.png" 
+					 >
+							</Button>
+
+
+						</Grid>
+
+
+					</Grid>
+				</Frame>
+			</Grid>
+
+
+
+
+			<Grid Grid.Row="1">
+
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+
+				<Frame x:Name="AggrementFrame" Grid.Row="0" Margin="2"    CornerRadius="10"   IsVisible="False">
+					<StackLayout Orientation="Vertical" Margin="2" >
+						<Label x:Name="AggrementTitle" FontSize="12" FontAttributes="Bold"/>
+						<Label x:Name="AggrementText"/>
+						<StackLayout Orientation="Horizontal">
+							<Label Text="Initial Charges" FontSize="12" WidthRequest="120"/>
+							<Label x:Name="InitialCharges"   FontSize="12" WidthRequest="50" FontAttributes="Bold"/>
+						</StackLayout>
+						<StackLayout Orientation="Horizontal">
+							<Label Text="Per Kilometer Rate" FontSize="12" WidthRequest="120"/>
+							<Label x:Name="ChargesPerKm"   FontSize="12" WidthRequest="50" FontAttributes="Bold"/>
+						</StackLayout>
+						<StackLayout Orientation="Horizontal">
+							<Label Text="Per Hour Rate" FontSize="12" WidthRequest="120"/>
+							<Label x:Name="ChargesPerHour"  FontSize="12" WidthRequest="50" FontAttributes="Bold"/>
+						</StackLayout>
+						<StackLayout Orientation="Horizontal">
+							<Label Text="Total" FontSize="12" WidthRequest="120"/>
+							<Label x:Name="TotalCharges"  FontSize="12" WidthRequest="50" FontAttributes="Bold"/>
+						</StackLayout>
+						<Label FontSize="12" FontAttributes="Bold">Do you accept this aggrement?</Label>
+					</StackLayout>
+				</Frame>
+
+				<Frame x:Name="AggrementAcceptanceFrame" Grid.Row="1" Margin="2"    CornerRadius="10" HeightRequest="50" IsVisible="False">
+					<StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center" >
+						<controls:CheckBox x:Name="AggrementCheckBox"   Text="I Accept" HorizontalOptions="StartAndExpand" Type="Check"/>
+
+						<Button HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnAcceptRequest" Style="{DynamicResource PrimaryButtonRed}" Text="Accept Aggrement" 
+								BindingContext="{x:Reference Name=AggrementCheckBox}" IsVisible="{Binding Path=IsChecked}"   />
+					</StackLayout>
+				</Frame>
+
+			</Grid>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			  
+             x:Class="Mech.Views.CustomerRegistrationPage" Title="Register">
+    <ContentPage.Content>
+
+		<Frame Margin="2,5">
+			
+		
+		<StackLayout Margin="10" Orientation="Vertical"	>
+
+			<Entry    Keyboard="Text" ReturnType="Done" MaxLength="25"   Text="{Binding Name}"   WidthRequest="250" Placeholder="Full Name"   />
+			<Entry    Keyboard="Telephone" ReturnType="Done" MaxLength="16"   Text="{Binding ContactNo}"     WidthRequest="250" Placeholder="Contact No"   />
+
+			<Picker ItemsSource="{Binding Vechiles}" SelectedItem="{Binding SelectedVechile}"  WidthRequest="250"  Title="Vechile" ></Picker>
+			<Picker ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedModel}"  WidthRequest="250" Title="Model" ></Picker>
+			<Button  Command="{Binding RegisterCommand}" Style="{DynamicResource PrimaryButton}" Text="Register"   />
+
+		</StackLayout>
+		</Frame>
+
+	</ContentPage.Content>
+</ContentPage>

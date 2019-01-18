@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:vm="clr-namespace:Mech.ViewModels"
+			  xmlns:img="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"	   
+			 xmlns:lottie="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"						   
+             x:Class="Mech.Views.NotificationsPage" Title="Notifications">
+	<ContentPage.BindingContext>
+		<vm:ContractsViewModel/>
+	</ContentPage.BindingContext>
+    <ContentPage.Content>
+		<ListView x:Name="ContractsListView" HasUnevenRows="True" SeparatorColor="Transparent" 
+					  IsPullToRefreshEnabled="True" ItemsSource="{Binding Contracts}" IsRefreshing="{Binding IsRefreshing}" 
+					  RefreshCommand="{Binding RefreshCommand}" ItemTapped="ItemTapped"   >
+			<ListView.ItemTemplate>
+				<DataTemplate>
+
+					<ViewCell>
+						<Frame BackgroundColor="WhiteSmoke"
+							Padding="10"
+							HasShadow="false"
+							Margin="5">
+							<StackLayout Orientation="Horizontal" Spacing="10" Margin="2,2,2,2">
+								<img:CircleImage Source="{Binding ImageUrl}" WidthRequest="50" HeightRequest="50" Aspect="AspectFill"/>
+								<StackLayout Orientation="Vertical">
+									<Label Text="{Binding Name}" FontSize="18" TextColor="Gray"/>
+									<StackLayout Orientation="Horizontal">
+										<Label Text="{Binding Title}" FontSize="12" TextColor="DarkGray"/>
+									</StackLayout>
+
+									<StackLayout Orientation="Horizontal">
+										<lottie:AnimationView   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+											  Animation="muzli.json" Loop="True" AutoPlay="True"
+											HeightRequest="20" WidthRequest="20"  	IsVisible="{Binding IsPending}"  />
+										<lottie:AnimationView   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+											  Animation="CheckMark.json" Loop="False" AutoPlay="True"
+											HeightRequest="20" WidthRequest="20"  	IsVisible="{Binding IsConfirmed}"  />
+
+										<!--<BoxView HeightRequest="3" WidthRequest="2" IsVisible="{Binding IsPending}" Color="IndianRed" />
+										<BoxView HeightRequest="3" WidthRequest="2" IsVisible="{Binding IsConfirmed}" Color="SeaGreen" />-->
+										<Label Text="{Binding Total}" FontSize="12" TextColor="Gray" FontAttributes="Bold"/>
+										<Label Text="{Binding Time,StringFormat='{0:MMMM dd, yyyy}'}" FontSize="11" TextColor="DarkGray"/>  
+										
+									</StackLayout>
+								</StackLayout>
+
+
+							</StackLayout>
+
+						</Frame>
+					</ViewCell>
+
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</ContentPage.Content>
+</ContentPage>
